@@ -1,6 +1,11 @@
-import math
 
-import pytest
+
+    # Cozinheiro - Definições
+def somar_dois_numeros(num1, num2):
+    return num1 + num2
+
+def subtrair_dois_numeros(num1, num2):
+    return num1 - num2
 
 def multiplicar_dois_numeros(num1, num2):
     return num1 * num2
@@ -9,123 +14,66 @@ def dividir_dois_numeros(num1, num2):
     try:
         return num1 / num2
     except ZeroDivisionError:
-        return "Não é possível dividir por 0"
-def somar_dois_numeros(num1, num2):
-    return num1 + num2
+        return 'Não é possível dividir por zero'
 
-def diminuir_dois_numeros(num1, num2):
-    return num1 - num2
+def elevar_um_numero_pelo_outro(num1, num2):
+    return num1 ** num2
 
-def area_quadrado(base, altura):
-    return base * altura
+# Calcular e testar a área de um quadrado
+# Area = Lado
 
-def area_retangulo(largura, comprimento):
-    return largura * comprimento
+# Calcular e testar a área de um retangulo
+# Area = Lado1 * Lado2
 
-def area_triangulo(lado1, lado2):
-    return lado1 * lado2 / 2
+# Calcular e testar a área de um triangulo
+# Area = Lado1 * Lado2 / 2
 
-def area_circulo(raio):
+# Calcular e testar a área de um circulo
+# Area = Pi * raio ** 2
+
+def calcular_area_do_circulo(raio):
     try:
-        return math.pi * raio**2
+        return 3.14 * raio ** 2
     except TypeError:
-        return "Tipo de dado incompatível"
+        return 'Falha no calculo - Raio não é um número'
 
-def volume_paralelograma(larg, comp, alt):
-    return larg * comp * alt
+def calcular_volume_do_paralelograma(largura, comprimento, altura):
+    return largura * comprimento * altura
 
-
-# ====================== TESTES ==========================
 if __name__ == '__main__':
 
+    # Garçon - Requisições / Chamadas
     resultado = somar_dois_numeros(5,7)
-    print(f'a soma eh de {resultado}')
+    print(f'A soma é {resultado}') # <-- Prato
 
-    resultado = diminuir_dois_numeros(7,2)
-    print(f'a subtracao eh de {resultado}')
+    resultado = subtrair_dois_numeros(7,5)
+    print(f'A subtração é {resultado}')
 
-    resultado = dividir_dois_numeros(5, 1)
-    print(f'a divisao eh de {resultado}')
+    resultado = multiplicar_dois_numeros(3,5)
+    print(f'A multiplicação é {resultado}')
 
-    resultado = multiplicar_dois_numeros(1, 4)
-    print(f'a multiplicacao eh de {resultado}')
+    resultado = dividir_dois_numeros(8,0)
+    print(f'A divisão é {resultado}')
 
-    resultado =area_quadrado(5, 2)
-    print(f'a area do quadrado eh {resultado}')
+    resultado = elevar_um_numero_pelo_outro(2,3)
+    print(f'A exponenciação é {resultado}')
 
-    resultado = area_retangulo(8, 5)
-    print(f'a area do retangulo eh {resultado}')
 
-    resultado = area_triangulo(3, 5)
-    print(f'a area do triangulo eh {resultado}')
 
-    resultado = area_circulo(10)
-    print(f'a area do circulo eh {resultado}')
 
-    resultado = volume_paralelograma(10, 9, 2)
-    print(f'a area do paralelograma eh {resultado}')
-'''def testar_soma():
+    # Degustador / Teste
+
+def testar_somar_dois_numeros():
+    # - 1ª Etapa: Configura / Prepara
+    # Dados / Valores
+    # Entrada / Input
     num1 = 8
-    num2 = 2
+    num2 = 9
+    # Saída / Output
+    resultado_esperado = 17
 
-    resultado_esperado = 10
-
+    # - 2ª Etapa: Executa
     resultado_atual = somar_dois_numeros(num1, num2)
 
+    # - 3ª Etapa: Confirma / Check / Valida
     assert resultado_atual == resultado_esperado
-
-def testar_multiplicacao():
-    num1 = 10
-    num2 = 2
-
-    resultado_esperado = 20
-
-    resultado_atual = multiplicar_dois_numeros(num1,num2)
-
-    assert resultado_atual == resultado_esperado
-
-
-def testar_subtracao():
-    num1 = 16
-    num2 = 6
-
-    resultado_esperado = 10
-    resultado_atual = diminuir_dois_numeros(num1,num2)
-
-    assert resultado_atual == resultado_esperado
-
-def testar_divisao():
-    num1 = 10
-    num2 = 2
-
-    resultado_esperado = 5
-    resultado_atual = dividir_dois_numeros(num1, num2)
-
-    assert resultado_esperado == resultado_atual
-def testar_area_quadrado():
-    base = 10
-    altura = 10
-
-    resultado_esperado = 100
-    resultado_atual = area_quadrado(base, altura)
-
-    assert resultado_atual == resultado_esperado
-
-def testar_area_retangulo():
-    comprimento = 8
-    largura = 5
-
-    resultado_esperado = 40
-    resultado_atual = area_retangulo(comprimento, largura)
-
-    assert resultado_atual == resultado_esperado
-
-def testar_area_triangulo():
-    lado1 = 3
-    lado2 = 5
-
-    resultado_esperado = 7.5
-    resultado_atual = area_triangulo(lado1, lado2)
-
-    assert resultado_atual == resultado_esperado
-'''
