@@ -26,7 +26,14 @@ def area_triangulo(lado1, lado2):
     return lado1 * lado2 / 2
 
 def area_circulo(raio):
-    return math.pi * raio**2
+    try:
+        return math.pi * raio**2
+    except TypeError:
+        return "Tipo de dado incompatível"
+
+def volume_paralelograma(larg, comp, alt):
+    return larg * comp * alt
+
 
 # ====================== TESTES ==========================
 if __name__ == '__main__':
@@ -52,11 +59,12 @@ if __name__ == '__main__':
     resultado = area_triangulo(3, 5)
     print(f'a area do triangulo eh {resultado}')
 
-    resultado = area_circulo(6)
+    resultado = area_circulo(10)
     print(f'a area do circulo eh {resultado}')
 
-
-def testar_soma():
+    resultado = volume_paralelograma(10, 9, 2)
+    print(f'a area do paralelograma eh {resultado}')
+'''def testar_soma():
     num1 = 8
     num2 = 2
 
@@ -120,3 +128,4 @@ def testar_area_triangulo():
     resultado_atual = area_triangulo(lado1, lado2)
 
     assert resultado_atual == resultado_esperado
+'''
