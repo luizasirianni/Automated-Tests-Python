@@ -73,3 +73,4 @@ def testar_consultar_usuario():
     assert corpo_da_resposta['password'] == password
     assert corpo_da_resposta['phone'] == phone
     assert corpo_da_resposta['userStatus'] == userStatus
+
