@@ -42,7 +42,6 @@ def testar_criar_usuario():
 
 
 def testar_consultar_usuario():
-
     status_code = 200
     id = 1001
     username = 'xingsling'
@@ -74,3 +73,50 @@ def testar_consultar_usuario():
     assert corpo_da_resposta['phone'] == phone
     assert corpo_da_resposta['userStatus'] == userStatus
 
+
+##################################################
+
+# utilização do put
+def testar_alterar_usuario():
+    username = 'usuarionumero2'
+
+    status_code_esperado = 200
+    code_esperado = 200
+    tipo_esperado = 'unknown'
+    message_esperado = '8989'
+
+    resposta = requests.put(
+        url=f'{base_url}/{username}',
+        data=open('D:/python/Pytest_Iterasys/test/database/user2.json', 'rb'),
+        headers=headers
+    )
+
+    corpo_da_resposta = resposta.json()
+
+    assert resposta.status_code == status_code_esperado
+    assert corpo_da_resposta['code'] == code_esperado
+    assert corpo_da_resposta['type'] == tipo_esperado
+    assert corpo_da_resposta['message'] == message_esperado
+
+
+# utilização delete
+
+def testar_deletar_usuario():
+    username = 'xingsling'
+
+    expected_code = 200
+    expected_status_code = 200
+    expected_type = 'unknown'
+    expected_message = username
+
+    response = requests.delete(
+        url=f'{base_url}/{username}',
+        headers=headers
+    )
+
+    response_body = response.json()
+
+    assert response.status_code == expected_status_code
+    assert response_body['code'] == expected_code
+    assert response_body['type'] == expected_type
+    assert response_body['message'] == expected_message
