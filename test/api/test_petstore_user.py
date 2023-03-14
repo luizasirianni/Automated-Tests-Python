@@ -147,6 +147,6 @@ def testar_login_usuario():
     assert resposta.status_code == status_code_esperado
     assert response_body['code'] == code_esperado
     assert response_body['type'] == type_esperado
-    #assert response_body['message'] >= inicio_message_esperado
-    assert (inicio_message_esperado in response_body['message'])
+    assert response_body['message'].find(inicio_message_esperado) != -1
+    #assert (inicio_message_esperado in response_body['message'])
     print('Login efetuado com sucesso')
