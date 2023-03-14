@@ -160,3 +160,13 @@ def testar_login_usuario():
 
     token_usuario = response_body['message']
     print(f'O token gerado foi: {token_usuario[23:]}')
+
+def testar_sequencia_testes():
+    testar_criar_usuario()
+    print('-*-'*30)
+    testar_login_usuario()
+    print('-*-'*30)
+    testar_consultar_usuario()
+    print('-*-'*30)
+    testar_deletar_usuario()
+    print('-*-' * 30)
