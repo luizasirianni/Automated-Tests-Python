@@ -142,11 +142,21 @@ def testar_login_usuario():
         url=f'{base_url}/login?username={username}&password={password}',
         headers=headers
     )
-
     response_body = resposta.json()
+    print(resposta)
+    print(resposta.status_code)
+    print(response_body)
+
     assert resposta.status_code == status_code_esperado
     assert response_body['code'] == code_esperado
     assert response_body['type'] == type_esperado
     assert response_body['message'].find(inicio_message_esperado) != -1
     #assert (inicio_message_esperado in response_body['message'])
     print('Login efetuado com sucesso')
+
+
+    #Extrair informação do Token do arquivo JSON
+    #Ou seja, da mensagem 'logged in user session:1678817829153' queremos extrair o token
+
+    token_usuario = response_body['message']
+    print(f'O token gerado foi: {token_usuario[23:]}')
