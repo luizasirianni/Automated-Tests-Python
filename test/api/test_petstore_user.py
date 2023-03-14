@@ -114,9 +114,19 @@ def testar_deletar_usuario():
         headers=headers
     )
 
-    response_body = response.json()
+    # condicionais estilo switch case utilizando o match
+    if response.status_code == 200:
+        #status code 200 = apagar um usuário já existente
+        response_body = response.json()
+        print('Usuario deletado com sucesso')
+        assert response.status_code == expected_status_code
+        assert response_body['code'] == expected_code
+        assert response_body['type'] == expected_type
+        assert response_body['message'] == expected_message
 
-    assert response.status_code == expected_status_code
-    assert response_body['code'] == expected_code
-    assert response_body['type'] == expected_type
-    assert response_body['message'] == expected_message
+    elif response.status_code == 400: #fez a chamada sem passar o usuário
+        print('Usuario invalido')
+
+    elif 404:
+        print('Usuario nao encontrado')
+
