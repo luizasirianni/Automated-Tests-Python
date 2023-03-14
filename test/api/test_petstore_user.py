@@ -2,7 +2,7 @@
 
 import pytest  # framework de testes unitarios
 import requests  # framework de testes de API - Requests/Responses
-
+import unittest
 # Passar o endereço da API - URL base
 base_url = 'https://petstore.swagger.io/v2/user'
 headers = {'Content-Type': 'application/json'}
@@ -130,3 +130,23 @@ def testar_deletar_usuario():
     elif 404:
         print('Usuario nao encontrado')
 
+def testar_login_usuario():
+    username = 'xingsling'
+    password = 'lulu123'
+    code_esperado = 200
+    status_code_esperado = 200
+    type_esperado = 'unknown'
+    inicio_message_esperado = 'logged in user session:'
+
+    resposta = requests.get(
+        url=f'{base_url}/login?username={username}&password={password}',
+        headers=headers
+    )
+
+    response_body = resposta.json()
+    assert resposta.status_code == status_code_esperado
+    assert response_body['code'] == code_esperado
+    assert response_body['type'] == type_esperado
+    #assert response_body['message'] >= inicio_message_esperado
+    assert (inicio_message_esperado in response_body['message'])
+    print('Login efetuado com sucesso')
