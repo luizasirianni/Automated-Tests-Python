@@ -21,12 +21,19 @@ class TestConsultarBelt():
     def teardown_method(self, method):
         self.driver.quit()
 
-    def test_consultarBelt(self):
+    def test_consultar_Belt_Enter(self):
         self.driver.get('http://demostore.supersqa.com/')
         #self.driver.set_window_size(1280, 680)
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0')
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys("Belt")
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys(Keys.ENTER)
+        time.sleep(3)
         assert self.driver.find_element(By.XPATH, '//*[@id="product-17"]/div[2]/h1').text == "Belt"
         assert self.driver.find_element(By.XPATH, '//*[@id="product-17"]/div[2]/p/span/bdi').text == "$37.14"
+
+    def test_consultar_Belt_Pagina_2(self):
+        self.driver.get('http://demostore.supersqa.com/')
+        self.driver.find_element(By.CSS_SELECTOR, '#main > div:nth-child(2) > nav > ul > li:nth-child(2) > a').click()
+        assert self.driver.current_url == 'http://demostore.supersqa.com/page/2/'
+
 
