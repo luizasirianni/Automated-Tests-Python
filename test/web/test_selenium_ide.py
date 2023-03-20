@@ -21,15 +21,18 @@ class TestConsultarBelt():
     def teardown_method(self, method):
         self.driver.quit()
 
-    def test_consultar_Belt_Enter(self):
+    @pytest.mark.parametrize('termo, produto, preco, xpathText, xpathPrice',[
+        ('belt', 'Belt', '$37.14', '//*[@id="product-17"]/div[2]/h1', '//*[@id="product-17"]/div[2]/p/span/bdi'),
+        ('album', 'Album', '$15.00', '//*[@id="product-24"]/div[2]/h1', '//*[@id="product-24"]/div[2]/p/span/bdi')
+    ])
+    def test_consultar_produto_Enter(self, termo, produto, preco, xpathText, xpathPrice):
         self.driver.get('http://demostore.supersqa.com/')
         #self.driver.set_window_size(1280, 680)
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0')
-        self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys("Belt")
+        self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys(termo)
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys(Keys.ENTER)
-        time.sleep(3)
-        assert self.driver.find_element(By.XPATH, '//*[@id="product-17"]/div[2]/h1').text == "Belt"
-        assert self.driver.find_element(By.XPATH, '//*[@id="product-17"]/div[2]/p/span/bdi').text == "$37.14"
+        assert self.driver.find_element(By.XPATH, xpathText).text == produto
+        assert self.driver.find_element(By.XPATH, xpathPrice).text == preco
 
     def test_consultar_Belt_Pagina_2(self):
         self.driver.get('http://demostore.supersqa.com/')
