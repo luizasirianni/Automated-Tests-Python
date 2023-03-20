@@ -36,4 +36,8 @@ class TestConsultarBelt():
         self.driver.find_element(By.CSS_SELECTOR, '#main > div:nth-child(2) > nav > ul > li:nth-child(2) > a').click()
         assert self.driver.current_url == 'http://demostore.supersqa.com/page/2/'
 
+    def test_consultar_freeshipping_msg(self):
+        self.driver.get('http://demostore.supersqa.com/')
+        assert self.driver.find_element(By.CSS_SELECTOR, '#wpfront-notification-bar-table > tbody > tr > td > div').text == 'Free shipping on orders over $50'
+
 
