@@ -23,11 +23,12 @@ class TestConsultarBelt():
 
     @pytest.mark.parametrize('termo, produto, preco, xpathText, xpathPrice',[
         ('belt', 'Belt', '$37.14', '//*[@id="product-17"]/div[2]/h1', '//*[@id="product-17"]/div[2]/p/span/bdi'),
-        ('album', 'Album', '$15.00', '//*[@id="product-24"]/div[2]/h1', '//*[@id="product-24"]/div[2]/p/span/bdi')
+        ('album', 'Album', '$15.00', '//*[@id="product-24"]/div[2]/h1', '//*[@id="product-24"]/div[2]/p/span/bdi'),
+        ('beanie', 'Beanie', '$18.00', '//*[@id="main"]/ul/li[2]/a[1]/h2','//*[@id="main"]/ul/li[2]/a[1]/span[2]/ins/span/bdi')
     ])
     def test_consultar_produto_Enter(self, termo, produto, preco, xpathText, xpathPrice):
         self.driver.get('http://demostore.supersqa.com/')
-        #self.driver.set_window_size(1280, 680)
+        self.driver.get_screenshot_as_file('D:/python/Automated-Tests-Python/test/prints/homepage.png')
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0')
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys(termo)
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys(Keys.ENTER)
