@@ -27,10 +27,12 @@ class TestConsultarBelt():
         ('beanie', 'Beanie', '$18.00', '//*[@id="main"]/ul/li[2]/a[1]/h2','//*[@id="main"]/ul/li[2]/a[1]/span[2]/ins/span/bdi')
     ])
     def test_consultar_produto_Enter(self, termo, produto, preco, xpathText, xpathPrice):
+        pasta_prints = 'D:/python/Automated-Tests-Python/test/prints/'
         self.driver.get('http://demostore.supersqa.com/')
-        self.driver.get_screenshot_as_file('D:/python/Automated-Tests-Python/test/prints/homepage.png')
+        self.driver.get_screenshot_as_file(f'{pasta_prints}homepage.png')
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0')
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys(termo)
+        self.driver.get_screenshot_as_file(f'{pasta_prints}campodepesquisa.png')
         self.driver.find_element(By.ID, 'woocommerce-product-search-field-0').send_keys(Keys.ENTER)
         assert self.driver.find_element(By.XPATH, xpathText).text == produto
         assert self.driver.find_element(By.XPATH, xpathPrice).text == preco
